@@ -3,7 +3,7 @@ import { ShareIcon } from "../icons/ShareIcon";
 import { DocumentIcon } from "../icons/DocumentIcon";
 import { DeleteIcon } from "../icons/DeleteIcon";
 
-const defaultStyles = "p-4 bg-white shadow-lg rounded-xl border border-gray-200 max-w-80 flex flex-col transition-transform transform hover:scale-105 hover:shadow-xl duration-200 z-10";
+const defaultStyles = "p-4 bg-white shadow-lg rounded-xl border border-gray-200 max-w-80 flex flex-col transition-transform transform hover:scale-105 hover:shadow-xl duration-200 z-10 select-none";
 
 interface CardProps {
     contentId: string;
@@ -90,7 +90,7 @@ export function Card(props: CardProps) {
 
     return (
         <div className={`${defaultStyles} relative z-10`}>
-            <div className="flex justify-between items-center pb-2 border-b border-gray-100">
+            <div className="flex justify-between items-center pb-2 border-b border-gray-100 select-none">
                 <div className="flex items-center text-md font-semibold text-gray-700">
                     <a href={props.link} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 hover:text-blue-500">
                         <DocumentIcon />

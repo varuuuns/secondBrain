@@ -14,7 +14,7 @@ const variantStyles = {
     secondary: "bg-purple-200 text-purple-600 hover:bg-purple-300"
 };
 
-const defaultStyles= "px-4 py-2 rounded-md font-light flex items-center justify-center"
+const defaultStyles= "px-4 py-2 rounded-md font-light flex items-center justify-center select-none cursor-pointer"
 
 export function Button(props:ButtonProps){
     return(

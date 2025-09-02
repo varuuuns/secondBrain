@@ -7,7 +7,7 @@ import { SidebarItem } from "./SidebarItem";
 
 export function Sidebar() {
     return (
-        <div className="h-screen bg-white border-r border-gray-100 w-64 fixed left-0 top-0 p-4 shadow-lg flex flex-col">
+        <div className="h-screen bg-white border-r border-gray-100 w-64 fixed left-0 top-0 p-4 shadow-lg flex flex-col select-none">
 
             <div className="flex items-center space-x-3 text-2xl font-semibold text-gray-800">
                 <Logo />
