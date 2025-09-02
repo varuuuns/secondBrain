@@ -1,19 +1,21 @@
 import { Request, Response, NextFunction } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
-import { JWT_PASSOWORD } from "./config";
-
-function userMiddleware(req: Request, res: Response, next: NextFunction) {
-    const header=req.headers.authorization // headers should be in small letter wierd fucking thing
-    if(!header) res.json({msg:"Authorization header is missing"});
-    
-    try{
-        const decoded=jwt.verify(header as string,JWT_PASSOWORD);
-        req.userId=(decoded as JwtPayload).id; // erripuku di em chesina error povatle
-        next();
+import { JWT_PASSWORD } from "./config"; 
+function userMiddleware(req: Request, res: Response, next: NextFunction): void {
+    const header = req.headers.authorization; 
+    if (!header) {
+        res.status(401).json({ msg: "Authorization header is missing" });
+        return;
     }
-    catch(err){
-        console.log(err);
-        res.json({msg:"Invalid Authorization header kun"});
+
+    try {
+        const decoded = jwt.verify(header, JWT_PASSWORD) as JwtPayload;
+        req.userId = decoded.id; // override.d.ts handles typing
+        next();
+    } catch (err) {
+        console.error("JWT error:", err);
+        res.status(403).json({ msg: "Invalid or expired token" });
+        return;
     }
 }
 

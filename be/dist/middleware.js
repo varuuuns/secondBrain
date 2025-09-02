@@ -7,16 +7,19 @@ exports.userMiddleware = userMiddleware;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const config_1 = require("./config");
 function userMiddleware(req, res, next) {
-    const header = req.headers.authorization; // headers should be in small letter wierd fucking thing
-    if (!header)
-        res.json({ msg: "Authorization header is missing" });
+    const header = req.headers.authorization;
+    if (!header) {
+        res.status(401).json({ msg: "Authorization header is missing" });
+        return;
+    }
     try {
-        const decoded = jsonwebtoken_1.default.verify(header, config_1.JWT_PASSOWORD);
-        req.userId = decoded.id; // erripuku di em chesina error povatle
+        const decoded = jsonwebtoken_1.default.verify(header, config_1.JWT_PASSWORD);
+        req.userId = decoded.id; // override.d.ts handles typing
         next();
     }
     catch (err) {
-        console.log(err);
-        res.json({ msg: "Invalid Authorization header kun" });
+        console.error("JWT error:", err);
+        res.status(403).json({ msg: "Invalid or expired token" });
+        return;
     }
 }
