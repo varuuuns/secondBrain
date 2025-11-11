@@ -1,12 +1,12 @@
 import express, { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { ContentModel, LinkModel, TagModel, UserModel } from "./db";
-import { JWT_PASSWORD } from "./config";
 import { validCreds } from "./zod";
 import argon2 from "argon2";
 import { userMiddleware } from "./middleware";
 import { random } from "./utils";
 import cors from "cors";
+import { JWT_PASSWORD } from "./config";
 
 const app = express();
 app.use(express.json());

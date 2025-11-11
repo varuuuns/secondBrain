@@ -1,5 +1,7 @@
 // config.ts
-const JWT_PASSWORD = "ANTONIA";
-const MONGO_URL = "mongodb+srv://varun:whattheheck@cluster0.d0e9g.mongodb.net/secondBrain";
+import { config } from "dotenv";
+config();
+const JWT_PASSWORD = process.env.JWT_PASSWORD as string;
+const MONGO_URL = process.env.MONGO_URL as string;
 
 export { JWT_PASSWORD, MONGO_URL };
