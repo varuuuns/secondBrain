@@ -10,7 +10,17 @@ import { JWT_PASSWORD, PORT } from "./config";
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: [
+    "https://second-brain-sigma-three.vercel.app",
+    "http://localhost:5173"
+  ],
+  methods: "GET,POST,PUT,DELETE,OPTIONS",
+  allowedHeaders: "Content-Type, Authorization",
+  credentials: true
+}));
+
+app.options("*", cors());
 
 app.post("/api/v1/signup", async (req: Request, res: Response): Promise<any> => {
     try {
