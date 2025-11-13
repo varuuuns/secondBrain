@@ -1,10 +1,10 @@
 import axios from "axios"
-import { BACKEND_URL } from "../config"
+import { API_URL } from "../config"
 
 export function DeleteIcon({contentId}:{contentId:string}){
     async function del(){
         try{
-            await axios.delete(`${BACKEND_URL}/api/v1/content`,{
+            await axios.delete(`${API_URL}/api/v1/content`,{
                 data:{ contentId },
                 headers:{
                     "Authorization":localStorage.getItem("Authorization"),

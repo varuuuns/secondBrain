@@ -7,7 +7,7 @@ import { CreateContent } from "../components/CreateContent";
 import { Sidebar } from "../components/Sidebar";
 import { useContent } from "../hooks/useContent";
 import axios from "axios";
-import { BACKEND_URL } from "../config";
+import { API_URL } from "../config";
 import { useNavigate } from "react-router-dom";
 
 export function Dashboard() {
@@ -38,7 +38,7 @@ export function Dashboard() {
   async function share() {
     try {
       const res = await axios.post(
-        `${BACKEND_URL}/api/v1/brain/share`,
+        `${API_URL}/api/v1/brain/share`,
         { share: true },
         {
           headers: {
@@ -58,7 +58,7 @@ export function Dashboard() {
   async function unshare() {
     try {
       await axios.post(
-        `${BACKEND_URL}/api/v1/brain/share`,
+        `${API_URL}/api/v1/brain/share`,
         { share: false },
         {
           headers: {

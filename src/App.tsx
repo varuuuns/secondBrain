@@ -4,7 +4,7 @@ import { Signup } from "./pages/Signup";
 import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
 import "./index.css";
 import { useEffect, useState } from "react";
-import { BACKEND_URL } from "./config";
+import { API_URL } from "./config";
 import axios from "axios";
 import { SharedPage } from "./pages/SharedPage";
 import { Home } from "./pages/Home";
@@ -20,7 +20,7 @@ function SharedPageWrapper(){
     useEffect(()=>{
         async function fetched(){
             try{
-                const response=await axios.get(`${BACKEND_URL}/api/v1/brain/${shareLink}`);
+                const response=await axios.get(`${API_URL}/api/v1/brain/${shareLink}`);
                 setData(response.data);
             }
             catch(err){

@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import { CrossIcon } from "../icons/CrossIcon";
 import { Button } from "./Button";
 import { Input } from "./Input";
-import { BACKEND_URL } from "../config";
+import { API_URL } from "../config";
 import axios from "axios";
 
 interface CreateContentProps {
@@ -84,7 +84,7 @@ export function CreateContent({
 
         try {
             const response = await axios.post(
-                `${BACKEND_URL}/api/v1/content`,
+                `${API_URL}/api/v1/content`,
                 {
                     title: title,
                     link: link,

@@ -1,7 +1,7 @@
 // src/hooks/useContent.tsx
 import { useState } from "react";
 import axios from "axios";
-import { BACKEND_URL } from "../config";
+import { API_URL } from "../config";
 
 export function useContent() {
   const [contents, setContents] = useState<any[]>([]); 
@@ -18,7 +18,7 @@ export function useContent() {
   const fetchContents = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`${BACKEND_URL}/api/v1/content`, {
+      const res = await axios.get(`${API_URL}/api/v1/content`, {
         headers: getAuthHeader(),
       });
       setContents(res.data.Content);
@@ -34,7 +34,7 @@ export function useContent() {
   const addContent = async (newContent: { title: string; url: string }) => {
     try {
       setLoading(true);
-      await axios.post(`${BACKEND_URL}/api/v1/content`, newContent, {
+      await axios.post(`${API_URL}/api/v1/content`, newContent, {
         headers: getAuthHeader(),
       });
       await fetchContents();
@@ -50,7 +50,7 @@ export function useContent() {
   const deleteContent = async (id: string) => {
     try {
       setLoading(true);
-      await axios.delete(`${BACKEND_URL}/api/v1/content/${id}`, {
+      await axios.delete(`${API_URL}/api/v1/content/${id}`, {
         headers: getAuthHeader(),
       });
       await fetchContents();
@@ -67,7 +67,7 @@ export function useContent() {
     try {
       setLoading(true);
       const res = await axios.post(
-        `${BACKEND_URL}/api/v1/content/share`,
+        `${API_URL}/api/v1/content/share`,
         {},
         { headers: getAuthHeader() }
       );
@@ -84,7 +84,7 @@ export function useContent() {
   const deleteShare = async () => {
     try {
       setLoading(true);
-      await axios.delete(`${BACKEND_URL}/api/v1/content/share`, {
+      await axios.delete(`${API_URL}/api/v1/content/share`, {
         headers: getAuthHeader(),
       });
     } catch (err: any) {

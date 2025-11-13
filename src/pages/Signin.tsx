@@ -2,7 +2,7 @@ import { Input } from "../components/Input";
 import { Button } from "../components/Button";
 import { useRef } from "react";
 import axios from "axios";
-import { BACKEND_URL } from "../config";
+import { API_URL } from "../config";
 import { useNavigate } from "react-router-dom";
 import { Logo } from "../icons/Logo";
 
@@ -15,7 +15,7 @@ export function Signin() {
     const username = userRef.current?.value;
     const password = passRef.current?.value;
 
-    const temp = await axios.post(`${BACKEND_URL}/api/v1/signin`, {
+    const temp = await axios.post(`${API_URL}/api/v1/signin`, {
       username,
       password,
     });

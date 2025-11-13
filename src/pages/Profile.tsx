@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { BACKEND_URL } from "../config";
+import { API_URL } from "../config";
 import { Button } from "../components/Button";
 
 interface User {
@@ -35,7 +35,7 @@ export default function Profile() {
     async function fetchUser() {
       setLoading(true);
       try {
-        const res = await axios.get(`${BACKEND_URL}/api/v1/user`, {
+        const res = await axios.get(`${API_URL}/api/v1/user`, {
           headers: { Authorization: localStorage.getItem("token") },
         });
         setUser(res.data);
@@ -64,7 +64,7 @@ export default function Profile() {
     fd.append("avatar", file);
 
     try {
-      const res = await axios.post(`${BACKEND_URL}/api/v1/user/avatar`, fd, {
+      const res = await axios.post(`${API_URL}/api/v1/user/avatar`, fd, {
         headers: {
           Authorization: localStorage.getItem("token"),
           "Content-Type": "multipart/form-data",
@@ -91,7 +91,7 @@ export default function Profile() {
     try {
       // update username/email/avatar
       await axios.put(
-        `${BACKEND_URL}/api/v1/user/update`,
+        `${API_URL}/api/v1/user/update`,
         {
           username: formData.username,
           email: formData.email,
@@ -105,7 +105,7 @@ export default function Profile() {
       // change password only if both fields provided
       if (currentPassword && newPassword) {
         await axios.put(
-          `${BACKEND_URL}/api/v1/user/change-password`,
+          `${API_URL}/api/v1/user/change-password`,
           { oldPassword: currentPassword, newPassword },
           { headers: { Authorization: localStorage.getItem("token") } }
         );
@@ -141,7 +141,7 @@ export default function Profile() {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`${BACKEND_URL}/api/v1/user/delete`, {
+      await axios.delete(`${API_URL}/api/v1/user/delete`, {
         headers: { Authorization: localStorage.getItem("token") },
       });
       localStorage.removeItem("token");
@@ -181,7 +181,7 @@ export default function Profile() {
           >
             {user.avatar ? (
               <img
-                src={`${BACKEND_URL}/api/v1/user/avatar/${user.avatar}`}
+                src={`${API_URL}/api/v1/user/avatar/${user.avatar}`}
                 alt="avatar"
                 className="w-full h-full object-cover"
               />
