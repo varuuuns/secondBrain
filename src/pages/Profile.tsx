@@ -20,7 +20,6 @@ export default function Profile() {
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [editing, setEditing] = useState(false);
-  const [showPasswordMasked, setShowPasswordMasked] = useState(false); // toggles between dots and "xxxx"
   const [showPasswordText, setShowPasswordText] = useState(false); // for "Show/Hide" toggle for the placeholder
 
   // Password change inputs (only used when editing)
